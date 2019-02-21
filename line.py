@@ -76,7 +76,7 @@ def message_text(event):
                 "service":"LINE"
         }
     response = requests.post(
-                        'ik1-315-17678.vs.sakura.ne.jp/post',
+                        'http://ik1-315-17678.vs.sakura.ne.jp/post',
                         json.dumps(payload),
                         headers={'Content-Type':'application/json'}
                         )
