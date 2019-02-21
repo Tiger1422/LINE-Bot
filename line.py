@@ -45,7 +45,7 @@ handler = WebhookHandler(channel_secret)
 
 @app.route("/callback", methods=['GET'])
 def _callback():
-	return 'OK'
+    return 'OK'
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -54,6 +54,7 @@ def callback():
 
     # get request body as text
     body = request.get_data(as_text=True)
+    print(body)
     app.logger.info("Request body: " + body)
 
     # handle webhook body
