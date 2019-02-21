@@ -69,22 +69,28 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def message_text(event):
     
+
+
+    
     payload = {
                 "type":"msg",
-                "data":"poo",
+                "data":event.message.text,
                 "name":"momo",
                 "service":"LINE"
         }
-   response = requests.post(
-                        'http://127.0.0.1:5000/post',
+    response = requests.post(
+                        'http;//ik1-315-17678.vs.sakura.ne.jp/post',
                         json.dumps(payload),
                         headers={'Content-Type':'application/json'}
                         )
-
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=response)
-    )
+    result = response.json()
+    hit=result['hit']
+    if hit:
+        
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text="このメッセージは危険な可能性があります" )
+        )
 
 
 if __name__ == "__main__":
