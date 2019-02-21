@@ -57,12 +57,6 @@ def callback():
     body = request.get_data(as_text=True)
     print(body)
 
-    # app.logger.info("Request body: " + body)
-    body = json.loads(body)
-    body["events"][0]["message"]["text"] = "Hello World"
-    body = json.dumps(body)
-    print(body)
-
     # handle webhook body
     try:
         handler.handle(body, signature)
@@ -76,7 +70,7 @@ def callback():
 def message_text(event):
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=event.message.text)
+        TextSendMessage(text="hello world")
     )
 
 
