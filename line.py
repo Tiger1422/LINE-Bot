@@ -15,6 +15,7 @@
 import os
 import sys
 import json
+import requests
 from argparse import ArgumentParser
 
 from flask import Flask, request, abort
@@ -68,10 +69,6 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def message_text(event):
-    
-
-
-    
     payload = {
                 "type":"msg",
                 "data":event.message.text,
