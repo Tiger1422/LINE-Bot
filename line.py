@@ -68,9 +68,22 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def message_text(event):
+    
+    payload = {
+                "type":"msg",
+                "data":"poo",
+                "name":"momo",
+                "service":"LINE"
+        }
+   response = requests.post(
+                        'http://127.0.0.1:5000/post',
+                        json.dumps(payload),
+                        headers={'Content-Type':'application/json'}
+                        )
+
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text="pappapap")
+        TextSendMessage(text=response)
     )
 
 
