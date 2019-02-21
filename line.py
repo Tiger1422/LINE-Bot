@@ -67,7 +67,7 @@ def callback():
 
     # handle webhook body
     try:
-	body = json.dumps(body)
+        body = json.dumps(body)
         handler.handle(body, signature)
     except InvalidSignatureError:
         abort(400)
