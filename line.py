@@ -57,13 +57,11 @@ def callback():
     body = request.get_data(as_text=True)
     body = json.loads(body)
 
-    print(type(body))
     print(body)
-    print(body["events"][0]["message"]["text"])
 
     body["events"][0]["message"]["text"] = "（ ＾ω＾）おっ"
 
-    app.logger.info("Request body: " + body)
+    # app.logger.info("Request body: " + body)
 
     # handle webhook body
     try:
