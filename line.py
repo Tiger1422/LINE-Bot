@@ -1,6 +1,5 @@
 from flask import Flask, request, abort
 
-import ssl
 
 
 from linebot import (
@@ -18,8 +17,9 @@ import config
 
 app = Flask(__name__)
 
-context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
-context.load_cert_chain('cert/crt.pem', 'cert/pri.pem')
+class config:
+    secret = os.getenv('LINE_CHANNEL_SECRET', None)
+    token = os.getenv('LINE_CHANNEL_ACCESS_TOKEN', None)
 
 line_bot_api = LineBotApi(config.token)
 handler = WebhookHandler(config.secret)
@@ -52,5 +52,5 @@ def handle_message(event):
 if __name__ == "__main__":
 #    app.run()
 #    app.run(host="0.0.0.0", port=config.port)
-    app.run(host="0.0.0.0", port=config.port, ssl_context=context)
+    app.run(host="0.0.0.0", port=config.port)
 
