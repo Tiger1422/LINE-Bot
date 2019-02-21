@@ -54,10 +54,8 @@ def callback():
 
     # get request body as text
     body = request.get_data(as_text=True)
+    print(type(body))
     print(body)
-    print(body["events"])
-    print(body["events"][0])
-    print(body["events"][0]["message"])
     print(body["events"][0]["message"]["text"])
 
     body["events"][0]["message"]["text"] = "（ ＾ω＾）おっ"
