@@ -14,6 +14,7 @@
 
 import os
 import sys
+import json
 from argparse import ArgumentParser
 
 from flask import Flask, request, abort
@@ -54,6 +55,8 @@ def callback():
 
     # get request body as text
     body = request.get_data(as_text=True)
+    body = json.loads(body)
+
     print(type(body))
     print(body)
     print(body["events"][0]["message"]["text"])
@@ -64,6 +67,7 @@ def callback():
 
     # handle webhook body
     try:
+	body = json.dumps(body)
         handler.handle(body, signature)
     except InvalidSignatureError:
         abort(400)
