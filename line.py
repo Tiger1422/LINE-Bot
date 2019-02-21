@@ -55,17 +55,17 @@ def callback():
 
     # get request body as text
     body = request.get_data(as_text=True)
-    body = json.loads(body)
-
     print(body)
 
-    body["events"][0]["message"]["text"] = "（ ＾ω＾）おっ"
-
     # app.logger.info("Request body: " + body)
+    
+    body = json.loads(body)
+    body["events"][0]["message"]["text"] = "（ ＾ω＾）おっ"
+    body = json.dumps(body)
+    print(body)
 
     # handle webhook body
     try:
-        body = json.dumps(body)
         handler.handle(body, signature)
     except InvalidSignatureError:
         abort(400)
